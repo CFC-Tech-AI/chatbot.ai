@@ -1,3 +1,2 @@
-django
-spacy
-chatterbot
+Django
+openai
