@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html style="background-color: #2d3436; color: #ff000; font-family: 'Comic Sans MS', cursive;">
+
+<nav style="background-color: #3498db; padding: 10px; text-align: center;">
+    <h2 style="margin: 0; color: #ffffff;">Chatbot</h2>
+</nav>
+
+<div style="max-width: 600px; margin: 50px auto; padding: 20px; border-radius: 10px; background-color: #d63031;">
+    <div style="overflow-y: scroll; max-height: 400px; border: 2px solid #74b9ff; border-radius: 10px; padding: 10px; margin-bottom: 20px;">
+        {% for message in messages %}
+            <div style="margin-bottom: 10px; padding: 8px; border: 1px solid #fdcb6e; border-radius: 5px; background-color: {% if message.sender == 'Bot' %}#55efc4{% else %}#ffeaa7{% endif %};">
+                <span style="font-weight: bold; color: #d63031;">{{ message.sender }}:</span> {{ message.message }}
+            </div>
+        {% endfor %}
+    </div>
+    <form method="post" action="{% url 'chatbot' %}">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="btn btn-primary" style="background-color: #00b894; border: none; padding: 5px 10px; border-radius: 20px; cursor: pointer;">Ask</button>
+    </form>
+    
+</div>
+
+</html>
