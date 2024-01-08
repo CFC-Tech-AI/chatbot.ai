@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8!#_a$qccwub_!jh^mwuen&u-74%ksqpfi(pggch@4a832s9pa'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.vercel.app','*']
 
@@ -52,7 +52,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'chatbot.urls'
-OPENAI_API_KEY='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'
+
 
 TEMPLATES = [
     {

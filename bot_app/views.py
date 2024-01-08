@@ -6,9 +6,17 @@ from .models import ChatMessage
 from .forms import ChatForm
 import openai
 
-openai.api_key = settings.OPENAI_API_KEY
+
+from dotenv import load_dotenv
+import os
+
+def configure():
+    load_dotenv()
+
+
 
 def generate_chatbot_response(user_message, chat_history=None):
+    configure()
     if chat_history is None:
         chat_history = []
 
@@ -16,6 +24,7 @@ def generate_chatbot_response(user_message, chat_history=None):
     chat_history.append({'role': 'user', 'content': user_message})
 
     # Generate chatbot response using OpenAI API
+    openai.api_key = os.getenv('OPENAI_API_KEY')
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=chat_history
@@ -27,6 +36,7 @@ def generate_chatbot_response(user_message, chat_history=None):
     return chatbot_reply
 
 def chatbot(request):
+    configure()
     # Check if it's a new session
     new_session = not request.session.get('initialized', False)
     if new_session:
